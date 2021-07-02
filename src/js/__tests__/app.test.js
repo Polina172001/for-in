@@ -9,7 +9,7 @@ const obj = {
 };
 
 test('check function', () => {
-  expect(orderByProps(obj, ['name', 'level'])).toBe([{
+  expect(orderByProps(obj, ['name', 'level'])).toEqual([{
     key: 'name',
     value: 'мечник',
   },

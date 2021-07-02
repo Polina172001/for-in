@@ -8,16 +8,18 @@ export default function orderByProps(object, [...key]) {
   for (const props in object) {
     key.forEach((prop) => {
       if (prop === props) {
-        arr.push(`key: ${prop}, value: ${object[props]}`);
+        arr.push({
+          key: prop,
+          value: object[prop],
+        });
         delete object[props];
       }
     });
   }
-  const outherArr = [];
-  // eslint-disable-next-line array-callback-return
-  Object.keys(object).sort().reduce((objs, keys) => {
-    outherArr.push(`key: ${keys}, value: ${object[keys]}`);
-  });
+  const outherArr = Object.keys(object).sort().reduce((obj, keys) => [...obj, {
+    key: keys,
+    value: object[keys],
+  }], []);
 
   return arr.concat(outherArr);
 }
